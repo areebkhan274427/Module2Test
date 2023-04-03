@@ -34,7 +34,7 @@ function addStudent(){
     document.getElementById('age').value="";
     document.getElementById('grade').value="";
     document.getElementById('degree').value="";
-
+    console.log(students);
     showTable();
 }
 
@@ -75,7 +75,7 @@ function showTable(){
                 grade.innerHTML = student[key];
             }
             else
-            degree.innerHTML = `<div>${student[key]}</div> <li onClick="edit(${student['ID']})" class='fa'>&#xf044;</li> <li onClick="del(${student['ID']})" class='fa'>&#xf1f8;</li> `;
+            degree.innerHTML = `<div>${student[key]}</div> <div class="icons"><a onClick="edit(${student['ID']})" class='fa'>&#xf044;</a> <a onClick="del(${student['ID']})" class='fa'>&#xf1f8;</a> </div> `;
             // degree.innerHTML = student[key] + "  <li class='fa'>&#xf044;</li>";
          
             row.appendChild(id);
