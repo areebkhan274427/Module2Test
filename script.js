@@ -1,7 +1,7 @@
 
 var count = 0;
 var students = []; 
-
+var global_id;
 function addStudent(){
  
     const nameValue = document.getElementById('name').value;
@@ -9,6 +9,41 @@ function addStudent(){
     const ageValue = document.getElementById('age').value;
     const gradeValue = document.getElementById('grade').value;
     const degreeValue = document.getElementById('degree').value;
+
+    if(document.querySelector("#submit").innerText == "Edit Student"){
+        console.log("this will edit and not add");
+        console.log(global_id);
+        let index;
+
+        for (let i = 0; i < students.length; i++) {
+            if (students[i]['ID'] == global_id) {
+                index=i;
+                break;
+            }
+        }
+
+        let studentobj = students[index];
+
+        studentobj['name'] = nameValue;
+        studentobj['email'] = emailValue;
+        studentobj['grade'] = gradeValue;
+        studentobj['age'] = ageValue;
+        studentobj['degree'] = degreeValue;
+
+        students[index] = studentobj;
+
+        showTable();
+        document.querySelector("#submit").innerHTML = "Add Student";
+
+            document.getElementById('name').value="";
+            document.getElementById('email').value="";
+            document.getElementById('age').value="";
+            document.getElementById('grade').value="";
+            document.getElementById('degree').value="";
+        
+     return;
+
+    }
 
     //if user didn't put all inputs will not put in the table
     if(nameValue=='' || emailValue=='' || ageValue=='' || gradeValue =='' || degreeValue==""){
@@ -115,37 +150,26 @@ function search(){
   }
 }
 
-function edit(id){
-    students.forEach((student) => {
-        if(student['ID']==id){
-            document.getElementById('name').value = student['name'];
-            document.getElementById('email').value = student['email'];
-            document.getElementById('age').value = student['age'];
-            document.getElementById('grade').value = student['grade'];
-            document.getElementById('degree').value = student['degree'];
-            document.getElementById('submit').innerText = 'Edit Student';
 
-            document.getElementById("submit").onclick = function jsFunc() {
-
-                student['name'] = document.getElementById('name').value;
-                student['email'] = document.getElementById('email').value;
-                student['age'] = document.getElementById('age').value;
-                student['grade'] = document.getElementById('grade').value;
-                student['degree'] = document.getElementById('degree').value;
-
-                document.getElementById('name').value="";
-                document.getElementById('email').value="";
-                document.getElementById('age').value="";
-                document.getElementById('grade').value="";
-                document.getElementById('degree').value="";
-
-                document.getElementById('submit').innerText = 'Add Student';
-        
-                showTable();
-            }   
+function edit(id) {
+    let student;
+    console.log(id);
+    for (let i = 0; i < students.length; i++) {
+        if (students[i]['ID'] == id) {
+            student = students[i];
+            break;
         }
-    })
-    
+    }
+
+    document.querySelector("#name").value = student['name'];
+    document.querySelector("#email").value = student['email'];
+    document.querySelector("#grade").value = student['grade'];
+    document.querySelector("#age").value = student['age'];
+    document.querySelector("#degree").value = student['degree'];
+
+    document.getElementById("submit").innerText = "Edit Student";
+
+    global_id=id;
 }
 
 function del(id){
