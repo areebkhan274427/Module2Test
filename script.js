@@ -145,6 +145,7 @@ function edit(id){
             }   
         }
     })
+    
 }
 
 function del(id){
