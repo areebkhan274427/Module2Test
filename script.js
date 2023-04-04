@@ -75,7 +75,7 @@ function showTable(){
                 grade.innerHTML = student[key];
             }
             else
-            degree.innerHTML = `<div>${student[key]}</div> <div class="icons"><a onClick="edit(${student['ID']})" class='fa'>&#xf044;</a> <a onClick="del(${student['ID']})" class='fa'>&#xf1f8;</a> </div> `;
+            degree.innerHTML = `<div class='degree'><div>${student[key]}</div> <div class="icons"><a onClick="edit(${student['ID']})" class='fa'>&#xf044;</a> <a onClick="del(${student['ID']})" class='fa'>&#xf1f8;</a> </div></div> `;
             // degree.innerHTML = student[key] + "  <li class='fa'>&#xf044;</li>";
          
             row.appendChild(id);
